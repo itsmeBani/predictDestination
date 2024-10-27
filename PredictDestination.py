@@ -33,7 +33,7 @@ def predictnextdestination(data):
     # Get indices of coordinates in the most populated cluster
     indices = np.where(predicted_clusters == most_populated_cluster)[0]
 
-    # Separate startpoints and endpoints based on the indices
+    # Separate startpoints and endeepoints based on the indices
     most_common_startpoints = startpoints[np.isin(np.arange(len(startpoints)), indices)]
     most_common_endpoints = endpoints[np.isin(np.arange(len(endpoints)), indices - len(startpoints))]
 
