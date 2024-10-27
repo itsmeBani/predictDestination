@@ -1,9 +1,12 @@
+import os
+import json
 import firebase_admin
 from dotenv import load_dotenv
 from firebase_admin import credentials, firestore
-import os
 load_dotenv()
-firebase_credentials = {
+
+# Get the credentials from the environment variable
+cred = credentials.Certificate({
     "type": os.getenv("FIREBASE_TYPE"),
     "project_id": os.getenv("FIREBASE_PROJECT_ID"),
     "private_key_id": os.getenv("FIREBASE_PRIVATE_KEY_ID"),
@@ -15,9 +18,12 @@ firebase_credentials = {
     "auth_provider_x509_cert_url": os.getenv("FIREBASE_AUTH_PROVIDER_X509_CERT_URL"),
     "client_x509_cert_url": os.getenv("FIREBASE_CLIENT_X509_CERT_URL"),
     "universe_domain": os.getenv("FIREBASE_UNIVERSE_DOMAIN")
-}
+})
 
-cred = credentials.Certificate(firebase_credentials)
+
+# Create a credentials object from the dictionary
+
+# Initialize the Firebase app with the credentials
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -55,3 +61,4 @@ def read_drivers():
 
 
 
+print(read_drivers())
