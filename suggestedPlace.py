@@ -16,6 +16,11 @@ def suggest_cluster_centers(data, n_clusters):
     # Get cluster centers for suggested start and end points
     start_centers = kmeans_start.cluster_centers_
     end_centers = kmeans_end.cluster_centers_
-    result={"startPoints": start_centers,"endPoints": end_centers}
+
+    result = {
+        "startPoints": [{"latitude": lat, "longitude": lon} for lat, lon in start_centers],
+        "endPoints": [{"latitude": lat, "longitude": lon} for lat, lon in end_centers]
+    }
+
     return result
 
