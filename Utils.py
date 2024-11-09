@@ -60,5 +60,3 @@ def read_drivers():
         return []  # Return an empty list if no drivers found
 
 
-
-print(read_drivers())
