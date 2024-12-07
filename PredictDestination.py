@@ -44,7 +44,6 @@ def predictnextdestination(data):
     startpoint_address ={"startpoint_address":reverse_geocode(most_common_startpoint[0][0], most_common_startpoint[0][1]),"latitude": most_common_startpoint[0][0], "longitude": most_common_startpoint[0][1]}
     endpoint_address = {"endpoint_address":reverse_geocode(most_common_endpoint[0][0], most_common_endpoint[0][1]),"latitude": most_common_startpoint[0][1], "longitude": most_common_startpoint[0][1]}
 
-
     return startpoint_address,endpoint_address
 
 

@@ -1,11 +1,23 @@
-# app.py
 from fastapi import FastAPI
-
+from fastapi.middleware.cors import CORSMiddleware
 from PredictDestination import predictnextdestination
 from Utils import read_driver_trips
-from suggestedPlace import suggest_cluster_centers
 
-app = FastAPI() 
+
+app = FastAPI()
+
+
+# Configure CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (or specify allowed origins)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all HTTP headers
+)
+
+
+
 @app.get("/predict/{docID}")
 async def predict(docID:str):
     data=read_driver_trips(docID)
@@ -13,11 +25,6 @@ async def predict(docID:str):
     return prediction
 
 
-@app.get("/suggestedPlace/{docID}")
-async  def getSuggestedPlace(docID:str):
-    data=read_driver_trips(docID)
-    if len(data) >= 3:
-      suggestedplace=suggest_cluster_centers(data,3)
-      return suggestedplace
-    else:
-        return False
+
+
+
